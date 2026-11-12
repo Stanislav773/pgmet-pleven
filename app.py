@@ -15,7 +15,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'pgmet-pleven-2026-secret'
 
-# Точен абсолютен път до базата данни
+
 базисен_път = os.path.abspath(os.path.dirname(__file__))
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(
     базисен_път, 'pgmet.db'
@@ -95,7 +95,7 @@ def register():
       flash('Този имейл вече е регистриран.', 'error')
       return redirect(url_for('register'))
 
-    # Създаваме потребителя веднага в базата данни без нужда от код за потвърждение
+    
     хеширана_парола = generate_password_hash(парола, method='scrypt')
     нов_потребител = Потребител(
         username=потребителско_име,
@@ -134,7 +134,7 @@ def login():
   return render_template('login.html')
 
 
-# Основни защитени маршрути
+
 @app.route('/home')
 @login_required
 def home():
