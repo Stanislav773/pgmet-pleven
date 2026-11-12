@@ -1,7 +1,5 @@
 import os
-import random
 import re
-import resend
 from flask import Flask, flash, redirect, render_template, request, session, url_for
 from flask_login import (
     LoginManager,
@@ -16,9 +14,6 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'pgmet-pleven-2026-secret'
-
-# Безопасно зареждане на API ключа от променливите на средата (Render / окружение)
-resend.api_key = os.environ.get("RESEND_API_KEY")
 
 # Точен абсолютен път до базата данни
 базисен_път = os.path.abspath(os.path.dirname(__file__))
@@ -71,24 +66,6 @@ def слаба_парола(парола):
   return False
 
 
-def изпрати_имейл_потвърждение(получател, код):
-  try:
-    params = {
-        'from': 'onboarding@resend.dev',
-        'to': [получател],
-        'subject': 'Код за потвърждение — ПГМЕТ Плевен',
-        'html': (
-            f'<p>Здравей!</p><p>Твоят код за потвърждение в портала на ПГМЕТ'
-            f' – Плевен е: <b>{код}</b></p>'
-        ),
-    }
-    resend.Emails.send(params)
-    return True
-  except Exception as грешка:
-    print(f'[ГРЕШКА ПРИ RESEND]: {грешка}')
-    return False
-
-
 @app.route('/')
 def индекс():
   if current_user.is_authenticated:
@@ -118,55 +95,24 @@ def register():
       flash('Този имейл вече е регистриран.', 'error')
       return redirect(url_for('register'))
 
-    код = str(random.randint(100000, 999999))
+    # Създаваме потребителя веднага в базата данни без нужда от код за потвърждение
     хеширана_парола = generate_password_hash(парола, method='scrypt')
+    нов_потребител = Потребител(
+        username=потребителско_име,
+        email=имейл,
+        password=хеширана_парола,
+        is_verified=True,
+    )
+    db.session.add(нов_потребител)
+    db.session.commit()
 
-    session['temp_user'] = {
-        'username': потребителско_име,
-        'email': имейл,
-        'password': хеширана_парола,
-        'code': код,
-    }
-
-    изпрати_имейл_потвърждение(имейл, код)
     flash(
-        f'Изпратихме истински код за потвърждение на {имейл}. Провери пощата си!',
+        'Профилът беше създаден успешно! Вече можеш да влезеш с данните си.',
         'success',
     )
-    return redirect(url_for('verify'))
+    return redirect(url_for('login'))
 
   return render_template('register.html')
-
-
-@app.route('/verify', methods=['GET', 'POST'])
-def verify():
-  temp_data = session.get('temp_user')
-  if not temp_data:
-    return redirect(url_for('register'))
-
-  if request.method == 'POST':
-    въведен_код = request.form.get('code').strip()
-
-    if въведен_код == temp_data['code']:
-      нов_потребител = Потребител(
-          username=temp_data['username'],
-          email=temp_data['email'],
-          password=temp_data['password'],
-          is_verified=True,
-      )
-      db.session.add(нов_потребител)
-      db.session.commit()
-      session.pop('temp_user', None)
-
-      flash(
-          'Профилът ти беше създаден и потвърден успешно! Вече можеш да влезеш.',
-          'success',
-      )
-      return redirect(url_for('login'))
-    else:
-      flash('Грешен код за потвърждение. Опитай пак.', 'error')
-
-  return render_template('verify.html', email=temp_data['email'])
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -188,7 +134,7 @@ def login():
   return render_template('login.html')
 
 
-# Основни маршрути от менюто
+# Основни защитени маршрути
 @app.route('/home')
 @login_required
 def home():
@@ -213,7 +159,6 @@ def klasove():
   return render_template('klasove.html', username=current_user.username)
 
 
-# Нови маршрути съобразени с падащото меню на официалния сайт
 @app.route('/rukovodstvo')
 @login_required
 def rukovodstvo():
