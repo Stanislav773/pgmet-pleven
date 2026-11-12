@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <title>ПГМЕТ - Плевен | Талантите</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #f8fafc; margin: 0; padding: 0; min-height: 100vh; }
+        header { background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
+        header h2 { margin: 0; font-size: 18px; color: #38bdf8; }
+        .nav-links { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .nav-links a { color: #cbd5e1; text-decoration: none; font-weight: 600; font-size: 13px; padding: 6px 10px; border-radius: 6px; transition: all 0.2s; }
+        .nav-links a:hover { color: #fff; background: rgba(255, 255, 255, 0.08); }
+        
+        .dropdown { position: relative; display: inline-block; padding-bottom: 15px; margin-bottom: -15px; }
+        .dropbtn { background: none; border: none; color: #cbd5e1; font-weight: 600; font-size: 13px; cursor: pointer; padding: 6px 10px; font-family: inherit; border-radius: 6px; }
+        .dropbtn:hover { color: #fff; background: rgba(255, 255, 255, 0.08); }
+        .dropdown-content { display: none; position: absolute; background-color: #1e293b; min-width: 240px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 10px; z-index: 1; top: 100%; left: 0; overflow: hidden; }
+        .dropdown-content a { color: #cbd5e1 !important; padding: 10px 14px; display: block; text-decoration: none; border-radius: 0 !important; font-size: 13px; border-bottom: 1px solid rgba(255,255,255,0.03); }
+        .dropdown-content a:hover { background-color: #2563eb; color: #fff !important; }
+        .dropdown:hover .dropdown-content { display: block; }
+
+        .container { max-width: 1000px; margin: 40px auto; background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); padding: 45px; border-radius: 16px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        h1 { color: #fff; margin-top: 0; font-size: 30px; margin-bottom: 15px; }
+        h2.section-heading { color: #38bdf8; font-size: 22px; margin-top: 40px; margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px; }
+        p { color: #cbd5e1; line-height: 1.8; font-size: 15px; margin-bottom: 20px; }
+        
+        .card { background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); padding: 30px; border-radius: 12px; margin-bottom: 25px; }
+        .card h3 { margin-top: 0; color: #38bdf8; font-size: 20px; margin-bottom: 12px; }
+        .card p { color: #cbd5e1; font-size: 15px; line-height: 1.7; margin-bottom: 15px; }
+        ul { padding-left: 20px; color: #cbd5e1; line-height: 1.8; font-size: 14px; margin-bottom: 0; }
+        li { margin-bottom: 8px; }
+
+        .img-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 25px 0; }
+        .img-card { background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 10px; overflow: hidden; text-align: center; padding: 10px; }
+        .img-card img { width: 100%; height: auto; border-radius: 8px; object-fit: cover; max-height: 320px; }
+        .img-card p { font-size: 13px; color: #94a3b8; margin: 10px 0 5px 0; }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>ПГМЕТ – Плевен</h2>
+        <div class="nav-links">
+            <div class="dropdown">
+                <button class="dropbtn">За училището ▾</button>
+                <div class="dropdown-content">
+                    <a href="{{ url_for('home') }}">Начало</a>
+                    <a href="{{ url_for('rukovodstvo') }}">Ръководство</a>
+                    <a href="{{ url_for('prepodavateli') }}">Списък на преподавателите</a>
+                    <a href="{{ url_for('talantite') }}">Талантите на ПГМЕТ</a>
+                </div>
+            </div>
+            <a href="{{ url_for('specialnosti') }}">Специалности</a>
+            <a href="{{ url_for('naukavane') }}">На какво учат?</a>
+            <a href="{{ url_for('klasove') }}">Класове</a>
+            <a href="{{ url_for('logout') }}" style="color: #f87171; font-weight: bold;">Изход</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>Талантите и успехите на ПГМЕТ – Плевен</h1>
+        <p>В Професионална гимназия по механоелектротехника – Плевен вярваме, че всеки ученик носи уникален потенциал. Нашата мисия е да развиваме тези заложби в сферата на науката, изкуството, екологията и спорта.</p>
+
+        <!-- Секция 1: Стихосбирка -->
+        <h2 class="section-heading">История, която се превърна в книга</h2>
+        <div class="card">
+            <h3>„Формули за вдъхновение“ – първата стихосбирка от нашите ученици</h3>
+            <p>С огромна радост споделяме, че от печат излезе първата стихосбирка на талантливите ученици от ПГМЕТ – Плевен. Това не е просто книга – това са живи емоции, мечти и мисли, превърнати в рими. Доказателство, че младите хора могат да бъдат едновременно инженери на бъдещето и поети на настоящето.</p>
+            <p>Специални благодарности към инж. Любка Тодорова – учител в ПГМЕТ, за впечатляващия дизайн и визията, която превърна стихосбирката в истинско произведение на изкуството. Благодарим и на печатница „Дедракс“ АД – гр. София и г-жа Албена Дюлева за професионализма, отношението и отличното партньорство.</p>
+            <p>Този вдъхновяващ проект е реализиран благодарение на г-жа Наташа Басарова – ръководител на клуб „Театър в рими“, която превърна една идея в сбъдната мечта.</p>
+            <p style="color: #38bdf8; font-weight: bold; margin-top: 15px;">ПГМЕТ – Плевен не просто обучава – ПГМЕТ създава таланти!</p>
+            
+            <div class="img-grid">
+                <div class="img-card">
+                    <img src="{{ url_for('static', filename='img/korica.jpg') }}" alt="Корица на стихосбирката Формули за вдъхновение">
+                    <p>Корица и гръб на стихосбирката</p>
+                </div>
+                <div class="img-card">
+                    <img src="{{ url_for('static', filename='img/,1.jpg') }}" alt="Представяне на стихосбирката с ръководството">
+                    <p>Среща с авторите и ръководството в гимназията</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Секция 2: Инициативи и спорт -->
+        <h2 class="section-heading">Активен живот, екология и спорт</h2>
+        <div class="card">
+            <p>В края на месец юни учениците на Професионална гимназия по механоелектротехника – Плевен се включиха в две инициативи, организирани от Община Плевен, които насърчават активния начин на живот, грижата за природата и изграждането на ценности у младите хора.</p>
+            <p>По повод 27 юни – Деня на риболова, наши ученици взеха участие във второто издание на инициативата „Лов и риболов“, организирана съвместно от Община Плевен и Сдружение „Ловно-рибарско дружество – Плевен“ на спортен комплекс „Витска елия“. Учениците научиха основни правила за безопасен риболов и опазване на природата, а в духа на екологичната инициатива уловената риба бе върната обратно във водоема.</p>
+            <p>На следващия ден възпитаниците се включиха и в първото издание на „Активна неделя на открито“ на площад „Възраждане“, част от Спортния календар на Община Плевен за 2026 година, демонстрирайки висок спортен дух и енергия.</p>
+            <p>Участието в събитията се осъществи под ръководството на г-н Християн Димитров. Ръководството на гимназията изказва искрени благодарности към Община Плевен и организаторите.</p>
+        </div>
+
+        <!-- Секция 3: Успехи в състезания и олимпиади -->
+        <h2 class="section-heading">Повод за гордост са успехите на учениците ни</h2>
+        <div class="card">
+            <p>Изминалият период донесе поредица от значими постижения, доказващи високата подготовка на нашите възпитаници в национални мащаби:</p>
+            <ul>
+                <li><b>Национална олимпиада по „Техническо чертане“ (ТУ - София):</b> За трета поредна година стигнахме до националния кръг, като за първи път участвахме в трета състезателна група – чертане в CAD среда с AutoCAD. Светлин Бисеров Мишков от XII „Б“ клас се представи достойно.</li>
+                <li><b>Средношколско състезание „Енергетика“ (ТУ - Габрово):</b> Второ почетно място за отбора на ПГМЕТ в състав: Даниел Дишков, Димитър Жеков, Мартин Горанов и Милен Илиев от XI „Б“ клас.</li>
+                <li><b>Национален кръг „Най-добър техник в машиностроенето“ (Горна Оряховица):</b> Никола Иванов и Виктор Владимиров от XII „Б“ клас се наредиха сред първите 10 отбора в страната от общо 26 участници.</li>
+                <li><b>Състезание „Енергия за бъдещето“:</b> Владислав Буковски и Мартин Петков от XII „Б“ клас завоюваха трето място и спечелиха стипендии с ръководител инж. Красимир Иванов.</li>
+                <li><b>Зонално първенство по бадминтон (Габрово):</b> Отлично представяне, воля и спортсменски дух под ръководството на г-н Християн Димитров и г-жа Михаела Христова.</li>
+            </ul>
+
+            <div class="img-grid">
+                <div class="img-card">
+                    <img src="{{ url_for('static', filename='img/1_2.jpg') }}" alt="Национална олимпиада техническо чертане">
+                    <p>Участници в Националната олимпиада по техническо чертане в ТУ - София</p>
+                </div>
+                <div class="img-card">
+                    <img src="{{ url_for('static', filename='img/4_3.jpg') }}" alt="Награждаване и успехи на ученици">
+                    <p>Наградени ученици с грамоти и отличия</p>
+                </div>
+                <div class="img-card">
+                    <img src="{{ url_for('static', filename='img/Gabrovo_1.jpg') }}" alt="Състезание Енергетика Габрово">
+                    <p>Отборът на ПГМЕТ на състезанието „Енергетика“ в Габрово</p>
+                </div>
+                <div class="img-card">
+                    <img src="{{ url_for('static', filename='img/Badminton.jpg') }}" alt="Зонално първенство по бадминтон">
+                    <p>Училищният отбор по бадминтон на зоналното първенство</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <title>ПГМЕТ - Плевен | Класове</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #f8fafc; margin: 0; padding: 0; min-height: 100vh; }
+        header { background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
+        header h2 { margin: 0; font-size: 18px; color: #38bdf8; }
+        .nav-links { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .nav-links a { color: #cbd5e1; text-decoration: none; font-weight: 600; font-size: 13px; padding: 6px 10px; border-radius: 6px; transition: all 0.2s; }
+        .nav-links a:hover { color: #fff; background: rgba(255, 255, 255, 0.08); }
+        
+        .dropdown { position: relative; display: inline-block; padding-bottom: 15px; margin-bottom: -15px; }
+        .dropbtn { background: none; border: none; color: #cbd5e1; font-weight: 600; font-size: 13px; cursor: pointer; padding: 6px 10px; font-family: inherit; border-radius: 6px; }
+        .dropbtn:hover { color: #fff; background: rgba(255, 255, 255, 0.08); }
+        .dropdown-content { display: none; position: absolute; background-color: #1e293b; min-width: 240px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 10px; z-index: 1; top: 100%; left: 0; overflow: hidden; }
+        .dropdown-content a { color: #cbd5e1 !important; padding: 10px 14px; display: block; text-decoration: none; border-radius: 0 !important; font-size: 13px; border-bottom: 1px solid rgba(255,255,255,0.03); }
+        .dropdown-content a:hover { background-color: #2563eb; color: #fff !important; }
+        .dropdown:hover .dropdown-content { display: block; }
+
+        .container { max-width: 1000px; margin: 40px auto; background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); padding: 45px; border-radius: 16px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        h1 { color: #fff; margin-top: 0; font-size: 30px; margin-bottom: 10px; }
+        .subtitle { color: #94a3b8; font-size: 15px; margin-bottom: 35px; line-height: 1.7; }
+        
+        .class-box { background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); padding: 35px; border-radius: 12px; margin-bottom: 35px; }
+        .class-box h3 { margin-top: 0; font-size: 22px; margin-bottom: 15px; }
+        .class-box p { color: #cbd5e1; font-size: 15px; line-height: 1.8; margin-bottom: 15px; }
+        
+        ul { padding-left: 20px; color: #cbd5e1; line-height: 1.8; font-size: 14px; margin-bottom: 0; }
+        li { margin-bottom: 8px; }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>ПГМЕТ – Плевен</h2>
+        <div class="nav-links">
+            <div class="dropdown">
+                <button class="dropbtn">За училището ▾</button>
+                <div class="dropdown-content">
+                    <a href="{{ url_for('home') }}">Начало</a>
+                    <a href="{{ url_for('rukovodstvo') }}">Ръководство</a>
+                    <a href="{{ url_for('prepodavateli') }}">Списък на преподавателите</a>
+                    <a href="{{ url_for('talantite') }}">Талантите на ПГМЕТ</a>
+                </div>
+            </div>
+            <a href="{{ url_for('specialnosti') }}">Специалности</a>
+            <a href="{{ url_for('naukavane') }}">На какво учат?</a>
+            <a href="{{ url_for('klasove') }}" style="background: rgba(56, 189, 248, 0.1); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.2);">Класове</a>
+            <a href="{{ url_for('logout') }}" style="color: #f87171; font-weight: bold;">Изход</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>Паралелки и класове за осми клас</h1>
+        <p class="subtitle">Тук можете да разгледате подробно разпределението на паралелките за новата учебна година в Професионална гимназия по механоелектротехника – Плевен. Нашите класове за осми клас съчетават високи академични стандарти, модерна техническа база и насоченост към професионална реализация.</p>
+        
+        <!-- 8.A klas - Razrabotka na softuer -->
+        <div class="class-box" style="border-left: 6px solid #38bdf8;">
+            <h3 style="color: #38bdf8;">8. „А“ клас — Разработка на софтуер и програмиране</h3>
+            <p><b>Основно направление:</b> Системно програмиране, уеб технологии, бази данни и софтуерно инженерство.</p>
+            <p>Паралелката в 8.А клас е изцяло технологична и е създадена за ученици с изявени интереси към компютрите, алгоритмите и дигиталното творчество. Обучението осигурява здрава теоретична основа и задълбочени практични умения по програмиране още от първия ден.</p>
+            <ul>
+                <li><b>Интензивно обучение по програмиране:</b> Систематично изучаване на водещи софтуерни езици и изграждане на логика за решаване на проблеми.</li>
+                <li><b>Дигитални проекти:</b> Създаване на уеб сайтове, интерактивни приложения и работа с модерни среди за разработка (IDE).</li>
+                <li><b>Работа в екип:</b> Участие в групови софтуерни проекти, които развиват умения за работа в динамична среда.</li>
+                <li><b>Бъдеща реализация:</b> Отлична подготовка за продължаване на образованието във водещи технически университети и успешна кариера в IT сектора.</li>
+            </ul>
+        </div>
+
+        <!-- 8.B klas - CPU i elektrotehnika -->
+        <div class="class-box" style="border-left: 6px solid #10b981;">
+            <h3 style="color: #10b981;">8. „Б“ клас — ЦПУ (Цифрови програмни управления) и електротехника</h3>
+            <p><b>Основни направления:</b> Индустриални машини с ЦПУ, електротехника, силови инсталации и микропроцесорна техника.</p>
+            <p>Паралелката в 8.Б клас обединява ключовите инженерни и технически специалности на гимназията. Тя е перфектният избор за ученици, които искат да разбират в детайли устройството на техниката, електрическите мрежи и съвременните производствени машини с компютърно управление.</p>
+            <ul>
+                <li><b>Техническа теория и практика:</b> Задълбочено изучаване на електротехника, електроника и принципи на действие на електрическите машини.</li>
+                <li><b>Работа с ЦПУ (цифрови програмни управления):</b> Овладяване на принципите за работа и управление на машини с компютърно програмно управление.</li>
+                <li><b>Лабораторни занятия:</b> Практически упражнения в реални учебни работилници с измервателни уреди, схеми и силови инсталации.</li>
+                <li><b>Индустриални партньорства:</b> Възможности за стажове и реализация в реални производствени предприятия от региона.</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

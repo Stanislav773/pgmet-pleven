@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <title>ПГМЕТ - Плевен | Ръководство</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #f8fafc; margin: 0; padding: 0; min-height: 100vh; }
+        header { background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
+        header h2 { margin: 0; font-size: 18px; color: #38bdf8; }
+        .nav-links { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .nav-links a { color: #cbd5e1; text-decoration: none; font-weight: 600; font-size: 13px; padding: 6px 10px; border-radius: 6px; transition: all 0.2s; }
+        .nav-links a:hover { color: #fff; background: rgba(255, 255, 255, 0.08); }
+        
+        .dropdown { position: relative; display: inline-block; padding-bottom: 15px; margin-bottom: -15px; }
+        .dropbtn { background: none; border: none; color: #cbd5e1; font-weight: 600; font-size: 13px; cursor: pointer; padding: 6px 10px; font-family: inherit; border-radius: 6px; }
+        .dropbtn:hover { color: #fff; background: rgba(255, 255, 255, 0.08); }
+        .dropdown-content { display: none; position: absolute; background-color: #1e293b; min-width: 240px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 10px; z-index: 1; top: 100%; left: 0; overflow: hidden; }
+        .dropdown-content a { color: #cbd5e1 !important; padding: 10px 14px; display: block; text-decoration: none; border-radius: 0 !important; font-size: 13px; border-bottom: 1px solid rgba(255,255,255,0.03); }
+        .dropdown-content a:hover { background-color: #2563eb; color: #fff !important; }
+        .dropdown:hover .dropdown-content { display: block; }
+
+        .container { max-width: 1000px; margin: 40px auto; background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); padding: 45px; border-radius: 16px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        h1 { color: #fff; margin-top: 0; font-size: 30px; margin-bottom: 15px; }
+        p { color: #cbd5e1; line-height: 1.8; font-size: 15px; margin-bottom: 20px; }
+        
+        .leader-card { background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); padding: 30px; border-radius: 12px; margin-bottom: 30px; display: flex; gap: 30px; align-items: center; flex-wrap: wrap; }
+        .leader-card.no-img { display: block; }
+        .leader-img { width: 220px; height: 260px; object-fit: cover; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.2); background: #0b0f19; flex-shrink: 0; }
+        .leader-info { flex: 1; min-width: 280px; }
+        .leader-info h3 { margin-top: 0; color: #38bdf8; font-size: 20px; margin-bottom: 10px; }
+        .leader-info p { color: #cbd5e1; font-size: 15px; line-height: 1.7; margin-bottom: 0; }
+        ul { padding-left: 20px; color: #cbd5e1; line-height: 1.8; font-size: 14px; margin-bottom: 0; }
+        li { margin-bottom: 8px; }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>ПГМЕТ – Плевен</h2>
+        <div class="nav-links">
+            <div class="dropdown">
+                <button class="dropbtn">За училището ▾</button>
+                <div class="dropdown-content">
+                    <a href="{{ url_for('home') }}">Начало</a>
+                    <a href="{{ url_for('rukovodstvo') }}">Ръководство</a>
+                    <a href="{{ url_for('prepodavateli') }}">Списък на преподавателите</a>
+                    <a href="{{ url_for('talantite') }}">Талантите на ПГМЕТ</a>
+                </div>
+            </div>
+            <a href="{{ url_for('specialnosti') }}">Специалности</a>
+            <a href="{{ url_for('naukavane') }}">На какво учат?</a>
+            <a href="{{ url_for('klasove') }}">Класове</a>
+            <a href="{{ url_for('logout') }}" style="color: #f87171; font-weight: bold;">Изход</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>Ръководство на Професионална гимназия по механоелектротехника – Плевен</h1>
+        <p>Ръководният екип на Професионална гимназия по механоелектротехника – Плевен се състои от доказани професионалисти с дългогодишен опит в сферата на образованието, управлението и инженерните науки. Стратегията на ръководството е насочена към непрекъснато модернизиране на учебния процес, създаване на сигурна и стимулираща среда за развитие на учениците, както и изграждане на дългосрочни партньорства с водещи индустриални и технологични компании.</p>
+
+        <!-- Direktor - Cvetelina Stoikova -->
+        <div class="leader-card">
+            <img src="{{ url_for('static', filename='img/cvetelina_stoikova.jpg') }}" alt="инж. Цветелина Стойкова" class="leader-img">
+            <div class="leader-info">
+                <h3>Директор – инж. Цветелина Стойкова[cite: 3]</h3>
+                <p>Директорът носи цялостната юридическа, административна, финансова и академична отговорност за функционирането на учебното заведение. Нейните основни функции и задължения обхващат стратегическо планиране, развитие на материалната база, контрол на качеството на образователния процес и изграждане на партньорства с бизнеса в региона.</p>
+            </div>
+        </div>
+
+        <!-- Zam-direktor uchebna deynost - Ivalina Lazarova -->
+        <div class="leader-card">
+            <img src="{{ url_for('static', filename='img/ivalina_lazarova.jpg') }}" alt="инж. Ивалина Лазарова" class="leader-img">
+            <div class="leader-info">
+                <h3>Заместник-директор, учебна дейност – инж. Ивалина Лазарова[cite: 2]</h3>
+                <p>Организира, координира и контролира цялостния учебен процес в гимназията. Отговаря за изготвянето на учебните разписания, изпитните графици, методическата работа на преподавателите и следи за стриктното спазване на държавните образователни стандарти.</p>
+            </div>
+        </div>
+
+        <!-- Zam-direktor uchebno-proizvodstvena deynost - Emil Todorov (bez snimka) -->
+        <div class="leader-card no-img">
+            <div class="leader-info">
+                <h3 style="color: #10b981;">Заместник-директор, учебно-производствена дейност – инж. Емил Тодоров</h3>
+                <p>Координира практическото обучение на учениците, производствената практика в реална среда във фирмите партньори, работата в учебните работилници и лаборатории, както и връзката между теоретичната подготовка и техническата реализация на паралелките.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

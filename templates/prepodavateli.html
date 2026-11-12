@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <title>ПГМЕТ - Плевен | Преподаватели</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #f8fafc; margin: 0; padding: 0; min-height: 100vh; }
+        header { background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
+        header h2 { margin: 0; font-size: 18px; color: #38bdf8; }
+        .nav-links { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .nav-links a { color: #cbd5e1; text-decoration: none; font-weight: 600; font-size: 13px; padding: 6px 10px; border-radius: 6px; transition: all 0.2s; }
+        .nav-links a:hover { color: #fff; background: rgba(255, 255, 255, 0.08); }
+        
+        .dropdown { position: relative; display: inline-block; padding-bottom: 15px; margin-bottom: -15px; }
+        .dropbtn { background: none; border: none; color: #cbd5e1; font-weight: 600; font-size: 13px; cursor: pointer; padding: 6px 10px; font-family: inherit; border-radius: 6px; }
+        .dropbtn:hover { color: #fff; background: rgba(255, 255, 255, 0.08); }
+        .dropdown-content { display: none; position: absolute; background-color: #1e293b; min-width: 240px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 10px; z-index: 1; top: 100%; left: 0; overflow: hidden; }
+        .dropdown-content a { color: #cbd5e1 !important; padding: 10px 14px; display: block; text-decoration: none; border-radius: 0 !important; font-size: 13px; border-bottom: 1px solid rgba(255,255,255,0.03); }
+        .dropdown-content a:hover { background-color: #2563eb; color: #fff !important; }
+        .dropdown:hover .dropdown-content { display: block; }
+
+        .container { max-width: 1000px; margin: 40px auto; background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); padding: 45px; border-radius: 16px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        h1 { color: #fff; margin-top: 0; font-size: 30px; margin-bottom: 15px; }
+        p { color: #cbd5e1; line-height: 1.8; font-size: 15px; margin-bottom: 20px; }
+        
+        .card { background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); padding: 30px; border-radius: 12px; margin-bottom: 25px; }
+        .card h3 { margin-top: 0; color: #38bdf8; font-size: 20px; margin-bottom: 12px; }
+        
+        ul.teacher-list { padding-left: 20px; color: #cbd5e1; line-height: 1.8; font-size: 15px; margin-bottom: 0; }
+        ul.teacher-list li { margin-bottom: 12px; }
+        ul.teacher-list li strong { color: #fff; }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>ПГМЕТ – Плевен</h2>
+        <div class="nav-links">
+            <div class="dropdown">
+                <button class="dropbtn">За училището ▾</button>
+                <div class="dropdown-content">
+                    <a href="{{ url_for('home') }}">Начало</a>
+                    <a href="{{ url_for('rukovodstvo') }}">Ръководство</a>
+                    <a href="{{ url_for('prepodavateli') }}">Списък на преподавателите</a>
+                    <a href="{{ url_for('talantite') }}">Талантите на ПГМЕТ</a>
+                </div>
+            </div>
+            <a href="{{ url_for('specialnosti') }}">Специалности</a>
+            <a href="{{ url_for('naukavane') }}">На какво учат?</a>
+            <a href="{{ url_for('klasove') }}">Класове</a>
+            <a href="{{ url_for('logout') }}" style="color: #f87171; font-weight: bold;">Изход</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>Списък на преподавателите в ПГМЕТ – Плевен</h1>
+        <p>Запознайте се с нашия висококвалифициран екип от ръководители, учители по професионална подготовка и общообразователни дисциплини.</p>
+
+        <div class="card">
+            <h3>Ръководство и основни направления</h3>
+            <ul class="teacher-list">
+                <li><strong>инж. Цветелина Стойкова</strong> – Директор, Професионална подготовка по специалност „Машини и системи с ЦПУ“ и професия „Автоматизирани системи и технологии в машиностроенето“.</li>
+                <li><strong>инж. Емил Тодоров</strong> – ЗДУПД, Професионална подготовка по специалност „Машини и системи с ЦПУ“ и професия „Автоматизирани системи и технологии в машиностроенето“.</li>
+                <li><strong>инж. Ивалина Лазарова</strong> – ЗДУД, Професионална подготовка по специалност „Системно програмиране“, „Телекомуникационни системи“ и професия „Анализ на данни“.</li>
+                <li><strong>инж. Даниела Драганова</strong> – Ръководител на направление „Информационни и комуникационни технологии“, Професионална подготовка по специалност „Системно програмиране“, „Телекомуникационни системи“ и професия „Анализ на данни“.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>Преподаватели по професионална подготовка</h3>
+            <ul class="teacher-list">
+                <li><strong>инж. Петя Иванова</strong> – Учител, Професионална подготовка по специалност „Електрообзавеждане на производството“ и професия „Електроснабдяване и електрообзавеждане“.</li>
+                <li><strong>инж. Красимир Иванов</strong> – Старши учител, Професионална подготовка по специалност „Електрообзавеждане на производството“ и професия „Електроснабдяване и електрообзавеждане“.</li>
+                <li><strong>инж. Анета Симеонова-Кръстева</strong> – Учител, Професионална подготовка по специалност „Електрообзавеждане на производството“ и професия „Електроснабдяване и електрообзавеждане“.</li>
+                <li><strong>инж. Любка Тодорова</strong> – Старши учител, Професионална подготовка по специалност „Машини и системи с ЦПУ“ и професия „Автоматизирани системи и технологии в машиностроенето“.</li>
+                <li><strong>инж. Петър Йочков</strong> – Учител, Професионална подготовка по специалност „Машини и системи с ЦПУ“ и професия „Автоматизирани системи и технологии в машиностроенето“.</li>
+                <li><strong>инж. Красимир Георгиев</strong> – Учител, Професионална подготовка по специалност „Машини и системи с ЦПУ“ и професия „Автоматизирани системи и технологии в машиностроенето“.</li>
+                <li><strong>инж. Тихомир Мачев</strong> – Старши учител, Професионална подготовка по специалност „Системно програмиране“, „Телекомуникационни системи“ и професия „Анализ на данни“.</li>
+                <li><strong>инж. Николай Кръстев</strong> – Старши учител, Професионална подготовка по специалност „Системно програмиране“, „Телекомуникационни системи“ и професия „Анализ на данни“.</li>
+                <li><strong>инж. Мария Димитрова</strong> – Старши учител, Професионална подготовка по специалност „Системно програмиране“, „Телекомуникационни системи“ и професия „Анализ на данни“.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>Преподаватели по общообразователни учебни предмети</h3>
+            <ul class="teacher-list">
+                <li><strong>Петьо Петков</strong> – Старши учител по Български език и литература.</li>
+                <li><strong>Елка Цочева</strong> – Старши учител по Български език и литература.</li>
+                <li><strong>инж. Виолета Макавеева-Илиева</strong> – Старши учител по Английски език.</li>
+                <li><strong>Валерия Цветанова</strong> – Старши учител по Английски език и старши учител по Немски език.</li>
+                <li><strong>Кристияна Николаева</strong> – Учител по Английски език.</li>
+                <li><strong>инж. Поля Великовска</strong> – Учител по Математика, учител по Физика и астрономия.</li>
+                <li><strong>Николай Йонов</strong> – Учител по История и цивилизации, учител по География и икономика.</li>
+                <li><strong>инж. Даниела Паскова</strong> – Старши учител по Биология и здравно образование, старши учител по Химия и опазване на околната среда.</li>
+                <li><strong>Наташа Басарова</strong> – Старши учител по Философски цикъл.</li>
+                <li><strong>Християн Димитров</strong> – Учител по Физическо възпитание и спорт.</li>
+                <li><strong>Виктор Кацаров</strong> – Учител по Изобразително изкуство.</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
